@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <div class="wrapper"></div>
+
+
+    <script>
+        fetch("https://dummyjson.com/products")
+        .then((response) =>{
+            return response.json()
+        })
+        .then((result) => {
+            console.log(result)
+            showdata(result.products)
+        })
+        function showdata (data) {
+            for(let i =0; i<data.length;i++){
+
+                let head = document.createElement('div')
+                head.setAttribute('class','box')
+                document.querySelector('.wrapper').append(head)
+
+                const image = document.createElement('img')
+                image.src= data[i].images[0]
+                head.insertAdjacentElement('beforeend',image)
+
+                const title = document.createElement('h2')
+                title.innerHTML = data[i].title
+                head.insertAdjacentElement('beforeend',title)
+                
+                const description = document.createElement('p')
+                description.innerHTML = data[i].description
+                head.insertAdjacentElement('beforeend',description)
+                
+                const price = document.createElement('h3')
+                price.innerHTML="Price :"+data[i].price
+                head.insertAdjacentElement('beforeend',price)
+
+                const discountPercentage = document.createElement('h4')
+                discountPercentage.innerHTML= "Discount :" +data[i].discountPercentage
+                head.insertAdjacentElement('beforeend',discountPercentage)
+            }
+
+        }
+    </script>
+</body>
+</html>

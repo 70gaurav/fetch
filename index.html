@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,56 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-        <div class="wrapper"></div>
+    <div class="wrapper"></div>
 
 
     <script>
-        fetch("https://dummyjson.com/products")
-        .then((response) =>{
-            return response.json()
-        })
-        .then((result) => {
-            console.log(result)
-            showdata(result.products)
-        })
-        function showdata (data) {
-            for(let i =0; i<data.length;i++){
+        // fetch("https://dummyjson.com/products")
+        //     .then((response) => {
+        //         return response.json()
+        //     })
+        //     .then((result) => {
+        //         console.log(result)
+        //         showdata(result.products)
+        //     })
+        async function fetchdata(){
+            const response = await fetch('https://dummyjson.com/products')
+            const resolve = await response.json()
+            showdata(resolve.products)
+        }
+        fetchdata()
+        function showdata(data) {
+            for (let i = 0; i < data.length; i++) {
 
                 let box = document.createElement('div')
-                box.setAttribute('class','box')
+                box.setAttribute('class', 'box')
                 document.querySelector('.wrapper').append(box)
 
                 const image = document.createElement('img')
-                image.src= data[i].images[0]
-                box.insertAdjacentElement('beforeend',image)
+                image.src = data[i].images[0]
+                box.insertAdjacentElement('beforeend', image)
 
                 const title = document.createElement('h2')
                 title.innerHTML = data[i].title
-                box.insertAdjacentElement('beforeend',title)
-                
+                box.insertAdjacentElement('beforeend', title)
+
                 const description = document.createElement('p')
                 description.innerHTML = data[i].description
-                box.insertAdjacentElement('beforeend',description)
-                
+                box.insertAdjacentElement('beforeend', description)
+
                 const price = document.createElement('h3')
-                price.innerHTML="Price :"+data[i].price
-                box.insertAdjacentElement('beforeend',price)
+                price.innerHTML = "Price :" + data[i].price
+                box.insertAdjacentElement('beforeend', price)
 
                 const discountPercentage = document.createElement('h4')
-                discountPercentage.innerHTML= "Discount :" +data[i].discountPercentage
-                box.insertAdjacentElement('beforeend',discountPercentage)
+                discountPercentage.innerHTML = "Discount :" + data[i].discountPercentage
+                box.insertAdjacentElement('beforeend', discountPercentage)
             }
 
         }
     </script>
 </body>
+
 </html>

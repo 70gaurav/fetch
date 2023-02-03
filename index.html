@@ -23,29 +23,29 @@
         function showdata (data) {
             for(let i =0; i<data.length;i++){
 
-                let head = document.createElement('div')
-                head.setAttribute('class','box')
-                document.querySelector('.wrapper').append(head)
+                let box = document.createElement('div')
+                box.setAttribute('class','box')
+                document.querySelector('.wrapper').append(box)
 
                 const image = document.createElement('img')
                 image.src= data[i].images[0]
-                head.insertAdjacentElement('beforeend',image)
+                box.insertAdjacentElement('beforeend',image)
 
                 const title = document.createElement('h2')
                 title.innerHTML = data[i].title
-                head.insertAdjacentElement('beforeend',title)
+                box.insertAdjacentElement('beforeend',title)
                 
                 const description = document.createElement('p')
                 description.innerHTML = data[i].description
-                head.insertAdjacentElement('beforeend',description)
+                box.insertAdjacentElement('beforeend',description)
                 
                 const price = document.createElement('h3')
                 price.innerHTML="Price :"+data[i].price
-                head.insertAdjacentElement('beforeend',price)
+                box.insertAdjacentElement('beforeend',price)
 
                 const discountPercentage = document.createElement('h4')
                 discountPercentage.innerHTML= "Discount :" +data[i].discountPercentage
-                head.insertAdjacentElement('beforeend',discountPercentage)
+                box.insertAdjacentElement('beforeend',discountPercentage)
             }
 
         }
